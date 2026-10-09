@@ -5,14 +5,11 @@ export const site = {
   url: "https://faridhuseynov.dev",
   title: "Farid Huseynov — Software Engineer",
   description:
-    "Personal portfolio of Farid Huseynov, a software engineer focused on Java, Spring Boot, backend systems, databases, and software engineering.",
+    "Personal portfolio of Farid Huseynov, a software engineer focused on Java/C#, Spring Boot/ASP.NET, backend systems, databases, and software engineering.",
   github: "https://github.com/Digitalturkk",
   githubUser: "Digitalturkk",
-  // TODO: replace with your real LinkedIn URL.
-  linkedin: "https://www.linkedin.com/in/your-handle",
-  // TODO: replace with your real email address.
-  email: "email@example.com",
-  // TODO: put your CV at public/Farid-Huseynov-CV.pdf (or change this path).
+  linkedin: "https://www.linkedin.com/in/husfarid/",
+  email: "huseynovfarid1111@gmail.com",
   cv: "/Farid-Huseynov-CV.pdf",
   nav: [
     { label: "Home", href: "/" },
@@ -25,7 +22,7 @@ export const site = {
   hero: {
     eyebrow: "Software Engineer",
     heading: "Building reliable software and backend systems.",
-    text: "I'm Farid Huseynov, a software engineer focused on Java, Spring Boot, databases, and backend architecture.",
+    text: "I'm Farid Huseynov, a software engineer focused on Java/C#, Spring Boot/ASP.NET, databases, and backend architecture.",
     stackLine: "Java · Spring Boot · PostgreSQL · Docker · Linux",
   },
   contact: {
