@@ -5,5 +5,7 @@ export const activities = [
   "Startup projects",
   "Member of GDG Baku (2025-2027)",
   "International Volunteer (2026)",
-  "Mentor at <Three/Edu>"
+  "Mentor at <Three/Edu>",
+  "Mentor at National Hackathon (2025)",
+  "Scout Leader (2022-2025)"
 ] as const;

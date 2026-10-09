@@ -16,7 +16,7 @@ export function Footer() {
           <a href={`mailto:${site.email}`} className={link}>Email</a>
         </nav>
       </div>
-      <p className="container-page mt-8 text-xs text-muted">Built with Next.js and TypeScript.</p>
+      <p className="container-page mt-8 text-xs text-muted">Built with ♥ from Azerbaijan</p>
     </footer>
   );
 }

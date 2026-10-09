@@ -9,7 +9,7 @@ const OUT = fileURLToPath(new URL("../src/data/world-map.json", import.meta.url)
 const require = createRequire(import.meta.url);
 
 // Names as they appear in world-atlas (Natural Earth). Türkiye is "Turkey" there.
-const TARGETS = ["Azerbaijan", "Turkey", "Georgia", "Uzbekistan", "Japan"];
+const TARGETS = ["Azerbaijan", "Turkey", "Georgia", "Uzbekistan", "Kazakhstan", "Japan"];
 const WIDTH = 1000;
 const STEP = 8; // dot spacing in map units
 

@@ -55,7 +55,7 @@ export function PlacesMap() {
           <svg
             viewBox={`0 0 ${map.width} ${map.height}`}
             role="img"
-            aria-label="World map. Visited: Azerbaijan, Türkiye, Georgia, Uzbekistan. Goal destination: Japan."
+            aria-label="World map. Visited: Azerbaijan, Türkiye, Georgia, Uzbekistan, Kazakhstan. Goal destination: Japan."
             className="block h-auto w-full"
             onClick={() => setSelected(null)}
           >
