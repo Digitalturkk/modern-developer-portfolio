@@ -14,6 +14,7 @@ export const places: Place[] = [
   { id: "turkiye", name: "Türkiye", mapName: "Turkey", flag: "🇹🇷", status: "visited" },
   { id: "georgia", name: "Georgia", mapName: "Georgia", flag: "🇬🇪", status: "visited" },
   { id: "uzbekistan", name: "Uzbekistan", mapName: "Uzbekistan", flag: "🇺🇿", status: "visited" },
+  { id: "kazakhstan", name: "Kazakhstan", mapName: "Kazakhstan", flag: "🇰🇿", status: "visited" },
   { id: "japan", name: "Japan", mapName: "Japan", flag: "🇯🇵", status: "goal" },
 ];
 
