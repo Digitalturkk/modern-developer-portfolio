@@ -14,13 +14,13 @@ import type { ExperienceItem } from "./types";
 
 
 export const experience: ExperienceItem[] = [
-    {
+    /*{
     role: "Software Engineer Intern (Remote)",
     org: "Rakuten Ichiba Division",
     period: "Feb 2026 – Apr 2026",
     summary: "Worked with Kubernetes-based R-Cloud to run and deploy containerized microservices.",
     points: ["Internship"],
-    },
+    },*/
     {
     role: "Backend Engineer",
     org: "Aeronexus LLC",
