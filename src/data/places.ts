@@ -16,6 +16,7 @@ export const places: Place[] = [
   { id: "uzbekistan", name: "Uzbekistan", mapName: "Uzbekistan", flag: "🇺🇿", status: "visited" },
   { id: "kazakhstan", name: "Kazakhstan", mapName: "Kazakhstan", flag: "🇰🇿", status: "visited" },
   { id: "japan", name: "Japan", mapName: "Japan", flag: "🇯🇵", status: "goal" },
+  { id: "qatar", name: "Qatar", mapName: "Qatar", flag: "🇶🇦", status: "goal" },
 ];
 
-export const placesIntro = "Five countries visited. Japan is next.";
+export const placesIntro = "Five countries visited. Japan and Qatar are next.";

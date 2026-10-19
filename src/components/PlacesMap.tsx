@@ -19,7 +19,7 @@ interface WorldMap {
 
 const map = world as WorldMap;
 const visited = places.filter((p) => p.status === "visited");
-const goal = places.find((p) => p.status === "goal");
+const goals = places.filter((p) => p.status === "goal");
 
 const label = (p: Place) => (p.status === "visited" ? "Visited" : "Goal destination");
 
@@ -55,7 +55,7 @@ export function PlacesMap() {
           <svg
             viewBox={`0 0 ${map.width} ${map.height}`}
             role="img"
-            aria-label="World map. Visited: Azerbaijan, Türkiye, Georgia, Uzbekistan, Kazakhstan. Goal destination: Japan."
+            aria-label={`World map. Visited: ${visited.map((p) => p.name).join(", ")}. Goal destinations: ${goals.map((p) => p.name).join(" and ")}.`}
             className="block h-auto w-full"
             onClick={() => setSelected(null)}
           >
@@ -134,15 +134,20 @@ export function PlacesMap() {
           </ul>
         </div>
 
-        {goal ? (
+        {goals.length > 0 ? (
           <div className="border-t border-border pt-5">
-            <h3 className="text-sm font-medium">Next destination</h3>
-            <p
-              {...hoverProps(goal.id)}
-              className={`mt-3 flex items-center gap-3 rounded px-2 py-1 text-sm transition-colors ${activeId === goal.id ? "bg-bg" : ""}`}
-            >
-              {goal.name} <span aria-hidden="true">{goal.flag}</span>
-            </p>
+            <h3 className="text-sm font-medium">Next destinations</h3>
+            <ul className="mt-3 space-y-1">
+              {goals.map((goal) => (
+                <li
+                  key={goal.id}
+                  {...hoverProps(goal.id)}
+                  className={`flex items-center gap-3 rounded px-2 py-1 text-sm transition-colors ${activeId === goal.id ? "bg-bg" : ""}`}
+                >
+                  {goal.name} <span aria-hidden="true">{goal.flag}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : null}
       </div>
