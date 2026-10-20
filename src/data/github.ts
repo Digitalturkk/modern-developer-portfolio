@@ -47,6 +47,18 @@ export const featuredRepos: Repo[] = [
     stars: 1,
   },
   {
+    name: "MyNamae",
+    description: "Animated 3D dice that build names from Turkic, Arabic and Japanese naming traditions.",
+    url: "https://github.com/digisamu/MyNamae",
+    language: "TypeScript",
+  },
+  {
+    name: "MacFolioOS",
+    description: "Interactive portfolio styled as a macOS desktop.",
+    url: "https://github.com/digisamu/MacFolioOS",
+    language: "TypeScript",
+  },
+  {
     name: "algorithms",
     description: "Classic algorithms (binary search, Fibonacci, min/max) implemented in several languages.",
     url: "https://github.com/digisamu/algorithms",

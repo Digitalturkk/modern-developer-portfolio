@@ -1,4 +1,4 @@
-export const filters = ["All", "Backend", "Full Stack", "Open Source", "Fintech"] as const;
+export const filters = ["All", "Backend", "Full Stack", "Frontend", "Open Source", "Fintech"] as const;
 export type FilterName = (typeof filters)[number];
 export type Category = Exclude<FilterName, "All">;
 
