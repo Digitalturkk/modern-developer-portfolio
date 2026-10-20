@@ -6,7 +6,7 @@ export const site = {
   title: "Farid Huseynov — Software Engineer",
   description:
     "Personal portfolio of Farid Huseynov, a software engineer focused on Java/C#, Spring Boot/ASP.NET, backend systems, databases, and software engineering.",
-  github: "https://github.com/digisamu",
+  github: "https://github.com/Digitalturkk",
   githubUser: "Digitalturkk",
   linkedin: "https://www.linkedin.com/in/husfarid/",
   email: "huseynovfarid1111@gmail.com",
