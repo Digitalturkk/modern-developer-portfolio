@@ -6,7 +6,7 @@ import { Section } from "./Section";
 export function Contact() {
   const links = [
     { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: <Mail className="h-4 w-4" aria-hidden="true" /> },
-    { label: "GitHub", value: "Digitalturkk", href: site.github, icon: <GithubIcon className="h-4 w-4" /> },
+    { label: "GitHub", value: site.githubUser, href: site.github, icon: <GithubIcon className="h-4 w-4" /> },
     { label: "LinkedIn", value: "Connect on LinkedIn", href: site.linkedin, icon: <LinkedinIcon className="h-4 w-4" /> },
   ];
 

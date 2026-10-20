@@ -1,5 +1,5 @@
 import { ArrowUpRight, Star } from "lucide-react";
-import { fallbackRepos, type Repo } from "@/data/github";
+import { featuredRepos, type Repo } from "@/data/github";
 import { site } from "@/data/site";
 import { GithubIcon } from "./Icons";
 import { Section } from "./Section";
@@ -10,35 +10,35 @@ interface ApiRepo {
   html_url: string;
   language: string | null;
   stargazers_count: number;
-  fork: boolean;
-  pushed_at: string;
 }
 
+/** Featured repos with stars and language refreshed from the GitHub API when it responds. */
 async function getRepos(): Promise<Repo[]> {
   try {
     const res = await fetch(
-      `https://api.github.com/users/${site.githubUser}/repos?sort=pushed&per_page=30`,
+      `https://api.github.com/users/${site.githubUser}/repos?sort=pushed&per_page=100`,
       {
         headers: { Accept: "application/vnd.github+json" },
         next: { revalidate: 3600 },
         signal: AbortSignal.timeout(5000),
       },
     );
-    if (!res.ok) return fallbackRepos;
+    if (!res.ok) return featuredRepos;
     const data = (await res.json()) as ApiRepo[];
-    const repos = data
-      .filter((r) => !r.fork)
-      .slice(0, 6)
-      .map((r) => ({
-        name: r.name,
-        description: r.description,
+    const live = new Map(data.map((r) => [r.name.toLowerCase(), r]));
+    return featuredRepos.map((repo) => {
+      const r = live.get(repo.name.toLowerCase());
+      if (!r) return repo;
+      return {
+        ...repo,
+        description: repo.description ?? r.description,
         url: r.html_url,
-        language: r.language,
+        language: r.language ?? repo.language,
         stars: r.stargazers_count,
-      }));
-    return repos.length > 0 ? repos : fallbackRepos;
+      };
+    });
   } catch {
-    return fallbackRepos;
+    return featuredRepos;
   }
 }
 
@@ -46,7 +46,7 @@ export async function GitHubSection() {
   const repos = await getRepos();
 
   return (
-    <Section id="github" title="GitHub" intro="Recent public repositories, loaded from the public GitHub API.">
+    <Section id="github" title="GitHub" intro="Selected public repositories, with live star counts from GitHub.">
       <ul className="grid gap-4 md:grid-cols-2">
         {repos.map((r) => (
           <li key={r.url}>

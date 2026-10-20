@@ -9,7 +9,7 @@ export const projects: Project[] = [
       "A brokerage simulation platform built around market data, authentication, and portfolio functionality.",
     categories: ["Backend", "Full Stack", "Fintech"],
     tech: ["Java", "Spring Boot", "Spring Security", "JWT", "PostgreSQL", "Twelve Data API", "React"],
-    // github: "https://github.com/...",  // add when you want to link the source
+    github: "https://github.com/digisamu/DuckVest",
     overview: {
       items: [
         "A brokerage simulation platform built around market data, authentication, and portfolio functionality.",
@@ -35,8 +35,8 @@ export const projects: Project[] = [
     description:
       "An offline-first API client designed as a lightweight alternative to traditional API development tools.",
     categories: ["Open Source"],
-    tech: ["Tauri", "JavaScript/TypeScript", "API tooling", "Local storage"],
-    github: "https://github.com/Digitalturkk/Getman-Postman-Clone",
+    tech: ["Tauri", "Rust", "JavaScript/TypeScript", "API tooling", "Local storage"],
+    github: "https://github.com/digisamu/Getman-Postman-Clone",
     overview: {
       items: [
         "An offline-first API client designed as a lightweight alternative to traditional API development tools.",
@@ -61,6 +61,7 @@ export const projects: Project[] = [
       "A backend-focused stock exchange simulation exploring financial workflows and trading-system concepts.",
     categories: ["Backend", "Fintech"],
     tech: ["Java", "Spring Boot", "PostgreSQL"],
+    github: "https://github.com/digisamu/BARSDAG-Bar-Stock-Exchange",
     overview: {
       items: [
         "A backend-focused stock exchange simulation exploring financial workflows and trading-system concepts.",

@@ -13,6 +13,7 @@ export function Footer() {
         <nav aria-label="Footer" className="flex gap-5">
           <a href={site.github} className={link} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={site.linkedin} className={link} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={site.spotify} className={link} target="_blank" rel="noopener noreferrer">Spotify</a>
           <a href={`mailto:${site.email}`} className={link}>Email</a>
         </nav>
       </div>

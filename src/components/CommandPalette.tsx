@@ -46,6 +46,7 @@ export function CommandPalette() {
       { id: "experience", label: "Experience", hint: "Navigate", run: () => router.push("/#experience") },
       { id: "contact", label: "Contact", hint: "Navigate", run: () => router.push("/#contact") },
       { id: "github", label: "GitHub", hint: "Opens in a new tab", run: () => window.open(site.github, "_blank", "noopener,noreferrer") },
+      { id: "spotify", label: "Spotify", hint: "Opens in a new tab", run: () => window.open(site.spotify, "_blank", "noopener,noreferrer") },
       {
         id: "cv",
         label: "Download CV",
