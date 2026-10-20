@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { site } from "@/data/site";
 import { CommandPaletteButton } from "./CommandPalette";
 import { GithubIcon, LinkedinIcon } from "./Icons";
+import { WaveMark } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
@@ -25,8 +26,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur">
       <div className="container-page flex h-14 items-center justify-between">
-        <Link href="/" className="font-semibold tracking-tight" onClick={() => setOpen(false)}>
+        <Link href="/" className="group flex items-center gap-2.5 font-semibold tracking-tight" onClick={() => setOpen(false)}>
+          <WaveMark className="h-7 w-7 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5" />
           {site.name}
+          <span lang="ja" aria-hidden="true" className="hidden text-xs font-normal tracking-normal text-muted sm:inline">
+            ファリド
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">

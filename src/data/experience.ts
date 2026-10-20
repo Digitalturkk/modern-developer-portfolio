@@ -14,6 +14,13 @@ import type { ExperienceItem } from "./types";
 
 
 export const experience: ExperienceItem[] = [
+    {
+    role: "Software Engineer",
+    org: "Brain Solutions",
+    period: "Oct 2026 – Present",
+    summary: "Just started :)",
+    points: ["Internship"],
+    },
     /*{
     role: "Software Engineer Intern (Remote)",
     org: "Rakuten Ichiba Division",

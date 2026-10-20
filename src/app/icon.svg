@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0a0a0b"/><text x="16" y="22" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700" fill="#8b9cff">fh</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs><clipPath id="wave-clip"><rect width="64" height="64" rx="12"/></clipPath></defs>
+  <g clip-path="url(#wave-clip)">
+    <rect width="64" height="64" fill="#ede2c6"/>
+    <path d="M31 54 L41 41.5 L51 54Z" fill="#33506f"/>
+    <path d="M37.4 46 L41 41.5 L44.6 46 L43 45.2 L41.8 46.6 L40.4 45.2 L39 46.6Z" fill="#fbf6e8"/>
+    <path d="M0 56 C8 52 16 58 27 54.5 C37 51 47 57 64 53 V64 H0Z" fill="#1c3858"/>
+    <path d="M27 54.5 C37 51 47 57 64 53" fill="none" stroke="#f6f0de" stroke-width="1.2"/>
+    <path d="M-2 64 C-2 38 9 14 30 9 C44 6 56 11 60 22 C61.5 27 59 31 55 31.5 C57 28 56 23.5 51 22 C44 20.5 38.5 26 36.5 33 C34 41.5 28.5 50 26 64Z" fill="#1f3d63"/>
+    <path d="M7 64 C7 43 15 24 30 17 C37 14 44 14 48 16.5 C41 17.5 35.5 23 33 31 C30.5 39.5 25.5 50 22 64Z" fill="#4f7399"/>
+    <path d="M13 64 C13 48 19 33 29.5 25 C27.5 34 23 46 18 64Z" fill="#1f3d63"/>
+    <path fill="#f6f0de" d="M15 27 C19 17 26 11 33 9.3 C44 6.6 56 11.4 60 22 C61.5 27 59 31 55 31.5 C56.3 30 56.8 28.6 56.8 27.2 L53.6 29.6 C54.6 27.8 54.8 26 54.4 24.4 L51 26.6 C51.8 24.6 51.6 22.8 50.6 21.6 L47.2 24.6 C47.6 22.4 47 20.6 45.6 19.6 C45 17.6 43 15.8 40.4 15.4 L42.2 13.6 C38.6 12.6 35.4 13 32.6 14.2 L33.6 12.2 C29.6 13 26 15 23.2 18 L23.4 15.8 C20.6 18.2 17.8 22.6 15 27Z"/>
+    <g fill="#f6f0de">
+      <circle cx="58.6" cy="35" r="1"/><circle cx="61.4" cy="32.6" r="0.7"/><circle cx="55.8" cy="37.6" r="0.6"/><circle cx="61" cy="38" r="0.6"/>
+    </g>
+  </g>
+</svg>
