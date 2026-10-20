@@ -11,24 +11,6 @@ const OPEN_EVENT = "open-command-palette";
 
 type Action = { id: string; label: string; hint: string; run: () => void };
 
-export function CommandPaletteButton() {
-  const [label, setLabel] = useState("Ctrl K");
-  useEffect(() => {
-    if (/mac|iphone|ipad/i.test(navigator.platform)) setLabel("⌘ K");
-  }, []);
-  return (
-    <button
-      type="button"
-      className="icon-btn md:w-auto md:gap-2 md:px-2.5"
-      aria-label="Open command palette"
-      onClick={() => window.dispatchEvent(new Event(OPEN_EVENT))}
-    >
-      <Search className="h-4 w-4" aria-hidden="true" />
-      <kbd className="hidden font-mono text-xs md:inline">{label}</kbd>
-    </button>
-  );
-}
-
 export function CommandPalette() {
   const router = useRouter();
   const [open, setOpen] = useState(false);

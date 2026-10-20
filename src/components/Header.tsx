@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { site } from "@/data/site";
-import { CommandPaletteButton } from "./CommandPalette";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { WaveMark } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -49,7 +48,6 @@ export function Header() {
           <a href={site.linkedin} className="icon-btn hidden md:inline-flex" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer">
             <LinkedinIcon className="h-4 w-4" />
           </a>
-          <CommandPaletteButton />
           <ThemeToggle />
           <button
             type="button"
