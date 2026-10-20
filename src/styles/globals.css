@@ -92,6 +92,19 @@
     opacity: 0;
     transform: translateY(12px);
   }
+  /* Bash prompt colours (see StatusPanel.tsx) */
+  .term-user {
+    color: #4ade80;
+  }
+  .term-path {
+    color: #60a5fa;
+  }
+  .light .term-user {
+    color: #15803d;
+  }
+  .light .term-path {
+    color: #1d4ed8;
+  }
   .link {
     @apply text-fg underline decoration-border underline-offset-4 transition-colors hover:decoration-accent;
   }

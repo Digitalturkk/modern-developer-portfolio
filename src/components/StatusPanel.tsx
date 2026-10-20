@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Minus, Square, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { about } from "@/data/about";
 import { projects } from "@/data/projects";
@@ -10,14 +11,6 @@ import { skillGroups } from "@/data/skills";
 
 type Line = { text: string; href?: string; strong?: boolean };
 type Entry = { id: number; cmd: string; lines: Line[] };
-
-const rows = [
-  ["name", "Farid Huseynov"],
-  ["role", "Software Engineer"],
-  ["focus", "Java backend engineering"],
-  ["stack", "Spring Boot, PostgreSQL"],
-  ["study", "UNEC, 2023–2027"],
-] as const;
 
 const COMMANDS = ["help", "about", "projects", "skills", "research", "github", "contact", "clear"] as const;
 type Command = (typeof COMMANDS)[number];
@@ -44,7 +37,7 @@ const short = (url: string) => url.replace("https://", "");
 function execute(raw: string): Line[] | null {
   const input = raw.trim().toLowerCase();
   if (!isCommand(input)) {
-    return [{ text: `command not found: ${raw.trim()}. Type "help" to list commands.` }];
+    return [{ text: `bash: ${raw.trim()}: command not found` }];
   }
   switch (input) {
     case "help":
@@ -100,19 +93,21 @@ export function StatusPanel() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [value, setValue] = useState("");
   const [focused, setFocused] = useState(false);
+  const [caret, setCaret] = useState(0);
+  const [motd, setMotd] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-  const logRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
   const history = useRef<string[]>([]);
   const historyIndex = useRef(-1);
   const draft = useRef("");
   const nextId = useRef(0);
   const inputId = useId();
 
-  // Keep the newest output visible. Scrolls the log box only, never the page.
+  // Keep the prompt visible. Scrolls the terminal screen only, never the page.
   useEffect(() => {
-    const el = logRef.current;
+    const el = screenRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [entries]);
+  }, [entries, motd]);
 
   const typed = value.toLowerCase();
   const suggestion = typed ? (COMMANDS.find((c) => c.startsWith(typed) && c !== typed) ?? "") : "";
@@ -128,6 +123,7 @@ export function StatusPanel() {
     const lines = execute(text);
     if (lines === null) {
       setEntries([]);
+      setMotd(false);
       return;
     }
     const id = nextId.current++;
@@ -173,92 +169,118 @@ export function StatusPanel() {
     }
   }
 
+  const syncCaret = (el: HTMLInputElement) => setCaret(el.selectionStart ?? el.value.length);
+
+  const prompt = (
+    <span aria-hidden="true">
+      <span className="term-user font-semibold">farid@portfolio</span>
+      <span className="text-fg">:</span>
+      <span className="term-path font-semibold">~</span>
+      <span className="text-fg">$ </span>
+    </span>
+  );
+
+  const cursor = <span className="inline-block h-[1.15em] w-[0.6em] translate-y-[0.2em] bg-fg/80 motion-safe:animate-blink" />;
+
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-surface font-mono text-sm transition-colors duration-150 focus-within:border-accent/60">
-      <div className="border-b border-border px-4 py-2 text-xs text-muted">profile.yml</div>
-      <dl className="space-y-2 px-4 py-4">
-        {rows.map(([k, v]) => (
-          <div key={k} className="flex gap-3">
-            <dt className="w-14 shrink-0 text-muted">{k}:</dt>
-            <dd className="text-fg">{v}</dd>
-          </div>
-        ))}
-      </dl>
-
-      <div
-        ref={logRef}
-        role="log"
-        aria-label="Terminal output"
-        aria-live="polite"
-        className={
-          entries.length
-            ? "max-h-44 space-y-3 overflow-y-auto overscroll-contain border-t border-border px-4 py-3 text-xs"
-            : "sr-only"
-        }
-      >
-        {entries.map((e) => (
-          <div key={e.id} className="space-y-1 motion-safe:animate-page-in">
-            <p className="break-words text-fg">
-              <span className="text-muted" aria-hidden="true">~ $ </span>
-              {e.cmd}
-            </p>
-            {e.lines.map((l, i) => (
-              <OutputLine key={i} line={l} />
-            ))}
-          </div>
-        ))}
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-border bg-bg/60 px-3 py-2 text-xs text-muted">
+        <span />
+        <span>farid@portfolio: ~</span>
+        <span className="flex justify-end gap-3" aria-hidden="true">
+          <Minus className="h-3 w-3" />
+          <Square className="h-2.5 w-2.5" />
+          <X className="h-3 w-3" />
+        </span>
       </div>
 
+      {/* Fixed height keeps the panel the same size; output scrolls inside like a real terminal. */}
       <div
-        className="flex cursor-text items-center gap-2 border-t border-border px-4 py-2.5 text-base sm:text-xs"
-        onClick={() => inputRef.current?.focus({ preventScroll: true })}
+        ref={screenRef}
+        className="h-[254px] cursor-text overflow-y-auto overscroll-contain px-4 py-3 text-xs leading-5"
+        onClick={(e) => {
+          if ((e.target as HTMLElement).closest("a, button") || window.getSelection()?.toString()) return;
+          inputRef.current?.focus({ preventScroll: true });
+        }}
       >
-        <label htmlFor={inputId} className="sr-only">
-          Terminal command. Type help to list commands.
-        </label>
-        <span className="text-muted" aria-hidden="true">~ $</span>
-        <div className="relative min-w-0 flex-1">
-          <div className="pointer-events-none absolute left-0 top-0 max-w-full overflow-hidden whitespace-pre" aria-hidden="true">
-            <span className="invisible">{value}</span>
-            {suffix ? <span className="text-muted/50">{suffix}</span> : null}
-            {!value && !focused ? (
-              <>
-                <span className="inline-block h-[1.1em] w-[0.55em] translate-y-[0.15em] bg-accent motion-safe:animate-blink" />
-                <span className="ml-2 text-muted/60">type help</span>
-              </>
-            ) : null}
-            {!value && focused ? <span className="text-muted/60">type help</span> : null}
-          </div>
-          <input
-            ref={inputRef}
-            id={inputId}
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-              historyIndex.current = -1;
-            }}
-            onKeyDown={onKeyDown}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            spellCheck={false}
-            autoComplete="off"
-            autoCapitalize="off"
-            autoCorrect="off"
-            enterKeyHint="send"
-            className="relative block w-full bg-transparent text-fg caret-accent outline-none"
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-border px-4 py-2 text-xs text-muted">
-        <div role="group" aria-label="Available commands" className="flex flex-wrap gap-x-3 gap-y-1">
-          {COMMANDS.map((c) => (
-            <button key={c} type="button" onClick={() => submit(c)} className="transition-colors hover:text-fg">
-              {c}
-            </button>
+        <div role="log" aria-label="Terminal output" aria-live="polite">
+          {motd ? (
+            <div className="mb-3 text-muted">
+              <p className="text-fg">Welcome to {site.domain} (GNU/Linux x86_64)</p>
+              <p className="mt-3">
+                {" * Commands: "}
+                {COMMANDS.map((c, i) => (
+                  <span key={c}>
+                    <button type="button" onClick={() => submit(c)} className="text-fg underline-offset-2 hover:underline">
+                      {c}
+                    </button>
+                    {i < COMMANDS.length - 1 ? " " : null}
+                  </span>
+                ))}
+              </p>
+              <p>{" * Tab completes, ↑↓ browses history"}</p>
+            </div>
+          ) : null}
+          {entries.map((e) => (
+            <div key={e.id} className="mb-2">
+              <p className="break-words text-fg">
+                {prompt}
+                {e.cmd}
+              </p>
+              {e.lines.map((l, i) => (
+                <OutputLine key={i} line={l} />
+              ))}
+            </div>
           ))}
         </div>
-        <span className="hidden text-muted/60 sm:inline" aria-hidden="true">tab complete · ↑↓ history</span>
+
+        <div className="flex items-baseline">
+          <label htmlFor={inputId} className="sr-only">
+            Terminal command. Type help to list commands.
+          </label>
+          <span className="shrink-0 whitespace-pre">{prompt}</span>
+          <div className="relative min-w-0 flex-1 text-base sm:text-xs">
+            <div className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden whitespace-pre" aria-hidden="true">
+              {value ? (
+                <>
+                  <span className="invisible">{value}</span>
+                  {suffix ? <span className="text-muted/50">{suffix}</span> : null}
+                </>
+              ) : (
+                <span className="text-xs">
+                  {cursor}
+                  <span className="ml-2 text-muted/60">type help</span>
+                </span>
+              )}
+            </div>
+            {value && focused ? (
+              <div className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden whitespace-pre" aria-hidden="true">
+                <span className="invisible">{value.slice(0, caret)}</span>
+                {cursor}
+              </div>
+            ) : null}
+            <input
+              ref={inputRef}
+              id={inputId}
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+                syncCaret(e.target);
+                historyIndex.current = -1;
+              }}
+              onSelect={(e) => syncCaret(e.currentTarget)}
+              onKeyDown={onKeyDown}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              spellCheck={false}
+              autoComplete="off"
+              autoCapitalize="off"
+              autoCorrect="off"
+              enterKeyHint="send"
+              className="relative block w-full bg-transparent text-fg caret-transparent outline-none"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
