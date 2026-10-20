@@ -35,5 +35,6 @@ Push to GitHub, import the repo in Vercel (framework preset: Next.js), then add 
 ## World map ("Beyond Code")
 
 The map is generated from Natural Earth data (`world-atlas`) by `scripts/generate-world-map.mjs` into `src/data/world-map.json`.
-It runs automatically before `npm run dev` and `npm run build` and is skipped once the file has content, so commit the generated file.
-Run `npm run map` to force a rebuild. Edit the countries in `src/data/places.ts`.
+The map is framed around the countries in `src/data/places.ts`, so adding a place there also re-zooms the map.
+It runs automatically before `npm run dev` and `npm run build`, and is skipped while the generated file already matches those countries, so commit the generated file.
+Run `npm run map` to force a rebuild.
