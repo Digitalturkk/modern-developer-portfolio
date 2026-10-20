@@ -25,7 +25,7 @@ const label = (p: Place) => (p.status === "visited" ? "Visited" : "Goal destinat
 
 function shapeClass(p: Place, active: boolean) {
   if (p.status === "visited") return `stroke-accent transition-[fill] duration-150 ${active ? "fill-accent/70" : "fill-accent/35"}`;
-  return `stroke-accent transition-[fill] duration-150 ${active ? "fill-accent/25" : "fill-transparent"}`;
+  return `stroke-accent transition-[fill] duration-150 ${active ? "fill-accent/30" : "fill-accent/10"}`;
 }
 
 function tooltipPosition(c: MapCountry): React.CSSProperties {
@@ -55,7 +55,7 @@ export function PlacesMap() {
           <svg
             viewBox={`0 0 ${map.width} ${map.height}`}
             role="img"
-            aria-label={`World map. Visited: ${visited.map((p) => p.name).join(", ")}. Goal destinations: ${goals.map((p) => p.name).join(" and ")}.`}
+            aria-label={`Map of the countries I have visited and want to visit. Visited: ${visited.map((p) => p.name).join(", ")}. Goal destinations: ${goals.map((p) => p.name).join(" and ")}.`}
             className="block h-auto w-full"
             onClick={() => setSelected(null)}
           >
@@ -82,11 +82,23 @@ export function PlacesMap() {
                     d={shape.d}
                     strokeWidth={1.2}
                     strokeLinejoin="round"
-                    strokeDasharray={place.status === "goal" ? "4 3" : undefined}
+                    strokeDasharray={place.status === "goal" ? "3 2" : undefined}
                     className={shapeClass(place, activeId === place.id)}
                   />
                   {/* wider invisible stroke makes small countries easier to hit */}
                   <path d={shape.d} fill="none" stroke="transparent" strokeWidth={10} pointerEvents="stroke" />
+                  {/* diamond marker (as in the legend) keeps small goal countries like Qatar visible */}
+                  {place.status === "goal" ? (
+                    <rect
+                      x={shape.cx - 4}
+                      y={shape.cy - 4}
+                      width={8}
+                      height={8}
+                      transform={`rotate(45 ${shape.cx} ${shape.cy})`}
+                      strokeWidth={1.5}
+                      className="fill-surface stroke-accent"
+                    />
+                  ) : null}
                 </g>
               ) : null,
             )}
