@@ -2,24 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Dark theme: sumi-ink night (kachi-iro indigo-black, washi white, ai indigo) */
 :root {
-  --bg: 10 10 11;
-  --surface: 17 17 19;
-  --border: 38 38 42;
-  --fg: 237 237 238;
-  --muted: 142 142 152;
-  --accent: 139 156 255;
+  --bg: 16 18 24;
+  --surface: 24 27 35;
+  --border: 42 46 58;
+  --fg: 220 214 200;
+  --muted: 156 151 140;
+  --accent: 143 168 212;
+  --shu: 226 114 94;
   color-scheme: dark;
 }
 
 /* Light theme: washi paper (kinari), sumi ink and ai-iro indigo */
 .light {
   --bg: 244 238 225;
-  --surface: 251 248 241;
-  --border: 224 213 193;
-  --fg: 35 32 27;
-  --muted: 107 99 87;
-  --accent: 44 79 127;
+  --surface: 239 233 220;
+  --border: 214 203 182;
+  --fg: 61 56 47;
+  --muted: 105 97 82;
+  --accent: 53 86 128;
+  --shu: 178 58 44;
   color-scheme: light;
 }
 
@@ -30,6 +33,12 @@
   body {
     @apply bg-bg font-sans text-fg antialiased;
     font-feature-settings: "ss01", "cv11";
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif), "Hiragino Mincho ProN", "Yu Mincho", serif;
+    letter-spacing: 0;
   }
   ::selection {
     background: rgb(var(--accent) / 0.3);
@@ -62,14 +71,15 @@
     background: radial-gradient(70% 45% at 50% 0%, rgb(var(--accent) / 0.07), transparent 70%);
   }
   .grid-dots {
-    background-image: radial-gradient(rgb(var(--fg) / 0.1) 1px, transparent 1px);
-    background-size: 24px 24px;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><circle cx='0' cy='-10' r='20' fill='%23101218'/><circle cx='0' cy='-10' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='-10' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='-10' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='-10' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='-10' r='20' fill='%23101218'/><circle cx='40' cy='-10' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='-10' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='-10' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='-10' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='0' r='20' fill='%23101218'/><circle cx='20' cy='0' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='0' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='0' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='0' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='10' r='20' fill='%23101218'/><circle cx='0' cy='10' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='10' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='10' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='10' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='10' r='20' fill='%23101218'/><circle cx='40' cy='10' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='10' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='10' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='10' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='20' r='20' fill='%23101218'/><circle cx='20' cy='20' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='20' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='20' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='20' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='30' r='20' fill='%23101218'/><circle cx='0' cy='30' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='30' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='30' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='0' cy='30' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='30' r='20' fill='%23101218'/><circle cx='40' cy='30' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='30' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='30' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='40' cy='30' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='40' r='20' fill='%23101218'/><circle cx='20' cy='40' r='17' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='40' r='12.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='40' r='8' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/><circle cx='20' cy='40' r='3.5' fill='none' stroke='%23dcd6c8' stroke-opacity='1'/></svg>");
+    background-size: 40px 20px;
     -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 25%, #000 25%, transparent 85%);
     mask-image: radial-gradient(ellipse 90% 75% at 50% 25%, #000 25%, transparent 85%);
   }
   .grid-glow {
-    background-image: radial-gradient(rgb(var(--accent) / 0.55) 1.2px, transparent 1.4px);
-    background-size: 24px 24px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><circle cx='0' cy='-10' r='20' fill='%23101218'/><circle cx='0' cy='-10' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='20' fill='%23101218'/><circle cx='40' cy='-10' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='0' r='20' fill='%23101218'/><circle cx='20' cy='0' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='0' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='0' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='0' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='10' r='20' fill='%23101218'/><circle cx='0' cy='10' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='10' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='10' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='10' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='10' r='20' fill='%23101218'/><circle cx='40' cy='10' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='10' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='10' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='10' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='20' r='20' fill='%23101218'/><circle cx='20' cy='20' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='20' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='20' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='20' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='30' r='20' fill='%23101218'/><circle cx='0' cy='30' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='30' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='30' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='0' cy='30' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='30' r='20' fill='%23101218'/><circle cx='40' cy='30' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='30' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='30' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='40' cy='30' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='40' r='20' fill='%23101218'/><circle cx='20' cy='40' r='17' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='40' r='12.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='40' r='8' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/><circle cx='20' cy='40' r='3.5' fill='none' stroke='%238fa8d4' stroke-opacity='0.45'/></svg>");
+    background-size: 40px 20px;
     -webkit-mask-image: radial-gradient(150px circle at var(--mx, -999px) var(--my, -999px), #000, transparent);
     mask-image: radial-gradient(150px circle at var(--mx, -999px) var(--my, -999px), #000, transparent);
   }
@@ -86,12 +96,12 @@
   }
   /* Seigaiha (overlapping waves) replaces the dot grid in the light theme */
   .light .grid-dots {
-    opacity: 0.09;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><circle cx='0' cy='-10' r='20' fill='%23f4eee1'/><circle cx='0' cy='-10' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='-10' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='-10' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='-10' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='-10' r='20' fill='%23f4eee1'/><circle cx='40' cy='-10' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='-10' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='-10' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='-10' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='0' r='20' fill='%23f4eee1'/><circle cx='20' cy='0' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='0' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='0' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='0' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='10' r='20' fill='%23f4eee1'/><circle cx='0' cy='10' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='10' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='10' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='10' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='10' r='20' fill='%23f4eee1'/><circle cx='40' cy='10' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='10' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='10' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='10' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='20' r='20' fill='%23f4eee1'/><circle cx='20' cy='20' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='20' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='20' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='20' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='30' r='20' fill='%23f4eee1'/><circle cx='0' cy='30' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='30' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='30' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='0' cy='30' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='30' r='20' fill='%23f4eee1'/><circle cx='40' cy='30' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='30' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='30' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='40' cy='30' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='40' r='20' fill='%23f4eee1'/><circle cx='20' cy='40' r='17' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='40' r='12.5' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='40' r='8' fill='none' stroke='%2323201b' stroke-opacity='1'/><circle cx='20' cy='40' r='3.5' fill='none' stroke='%2323201b' stroke-opacity='1'/></svg>");
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><circle cx='0' cy='-10' r='20' fill='%23f4eee1'/><circle cx='0' cy='-10' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='-10' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='-10' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='-10' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='-10' r='20' fill='%23f4eee1'/><circle cx='40' cy='-10' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='-10' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='-10' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='-10' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='0' r='20' fill='%23f4eee1'/><circle cx='20' cy='0' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='0' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='0' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='0' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='10' r='20' fill='%23f4eee1'/><circle cx='0' cy='10' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='10' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='10' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='10' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='10' r='20' fill='%23f4eee1'/><circle cx='40' cy='10' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='10' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='10' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='10' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='20' r='20' fill='%23f4eee1'/><circle cx='20' cy='20' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='20' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='20' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='20' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='30' r='20' fill='%23f4eee1'/><circle cx='0' cy='30' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='30' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='30' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='0' cy='30' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='30' r='20' fill='%23f4eee1'/><circle cx='40' cy='30' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='30' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='30' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='40' cy='30' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='40' r='20' fill='%23f4eee1'/><circle cx='20' cy='40' r='17' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='40' r='12.5' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='40' r='8' fill='none' stroke='%233d382f' stroke-opacity='1'/><circle cx='20' cy='40' r='3.5' fill='none' stroke='%233d382f' stroke-opacity='1'/></svg>");
     background-size: 40px 20px;
   }
   .light .grid-glow {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><circle cx='0' cy='-10' r='20' fill='%23f4eee1'/><circle cx='0' cy='-10' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='20' fill='%23f4eee1'/><circle cx='40' cy='-10' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='0' r='20' fill='%23f4eee1'/><circle cx='20' cy='0' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='0' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='0' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='0' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='10' r='20' fill='%23f4eee1'/><circle cx='0' cy='10' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='10' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='10' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='10' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='10' r='20' fill='%23f4eee1'/><circle cx='40' cy='10' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='10' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='10' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='10' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='20' r='20' fill='%23f4eee1'/><circle cx='20' cy='20' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='20' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='20' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='20' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='30' r='20' fill='%23f4eee1'/><circle cx='0' cy='30' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='30' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='30' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='0' cy='30' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='30' r='20' fill='%23f4eee1'/><circle cx='40' cy='30' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='30' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='30' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='40' cy='30' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='40' r='20' fill='%23f4eee1'/><circle cx='20' cy='40' r='17' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='40' r='12.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='40' r='8' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/><circle cx='20' cy='40' r='3.5' fill='none' stroke='%232c4f7f' stroke-opacity='0.45'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><circle cx='0' cy='-10' r='20' fill='%23f4eee1'/><circle cx='0' cy='-10' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='-10' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='20' fill='%23f4eee1'/><circle cx='40' cy='-10' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='-10' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='0' r='20' fill='%23f4eee1'/><circle cx='20' cy='0' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='0' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='0' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='0' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='10' r='20' fill='%23f4eee1'/><circle cx='0' cy='10' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='10' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='10' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='10' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='10' r='20' fill='%23f4eee1'/><circle cx='40' cy='10' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='10' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='10' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='10' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='20' r='20' fill='%23f4eee1'/><circle cx='20' cy='20' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='20' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='20' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='20' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='30' r='20' fill='%23f4eee1'/><circle cx='0' cy='30' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='30' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='30' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='0' cy='30' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='30' r='20' fill='%23f4eee1'/><circle cx='40' cy='30' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='30' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='30' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='40' cy='30' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='40' r='20' fill='%23f4eee1'/><circle cx='20' cy='40' r='17' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='40' r='12.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='40' r='8' fill='none' stroke='%23355680' stroke-opacity='0.45'/><circle cx='20' cy='40' r='3.5' fill='none' stroke='%23355680' stroke-opacity='0.45'/></svg>");
     background-size: 40px 20px;
   }
 
@@ -105,16 +115,52 @@
   }
   /* Bash prompt colours (see StatusPanel.tsx) */
   .term-user {
-    color: #4ade80;
+    color: #a3c585;
   }
   .term-path {
-    color: #60a5fa;
+    color: #8fa8d4;
   }
   .light .term-user {
-    color: #3f6b2a;
+    color: #46672f;
   }
   .light .term-path {
-    color: #2c4f7f;
+    color: #355680;
+  }
+  /* Red sun behind the hero terminal: deeper at night, full strength on paper */
+  .hero-sun {
+    background: rgb(178 58 44 / 0.55);
+  }
+  .light .hero-sun {
+    background: rgb(var(--shu) / 0.75);
+  }
+  /* Vertical chapter labels beside section headings (see Section.tsx) */
+  main {
+    counter-reset: chapter;
+  }
+  .chapter {
+    counter-increment: chapter;
+  }
+  .chapter-label {
+    @apply absolute -left-16 top-1 font-mincho text-sm text-muted;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.3em;
+  }
+  .chapter-label::before {
+    content: "第" counter(chapter, cjk-ideographic) "章";
+  }
+  .chapter-label::after {
+    content: "";
+    display: inline-block;
+    inline-size: 3.5rem;
+    block-size: 1px;
+    margin-inline-start: 0.75rem;
+    vertical-align: middle;
+    background: rgb(var(--border));
+  }
+  /* Hanko-style stamp in vermilion (shu), used for the kanji labels on section headings */
+  .seal {
+    @apply inline-flex select-none items-center rounded-[3px] border-[1.5px] border-shu px-1.5 py-1 font-mincho text-sm leading-none text-shu;
+    transform: rotate(-3deg);
   }
   .link {
     @apply text-fg underline decoration-border underline-offset-4 transition-colors hover:decoration-accent;

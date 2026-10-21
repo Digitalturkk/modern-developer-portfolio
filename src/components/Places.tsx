@@ -5,7 +5,7 @@ import { Section } from "./Section";
 
 export function Places() {
   return (
-    <Section id="places" title="Beyond Code" intro={placesIntro}>
+    <Section id="places" kanji="趣味" title="Beyond Code" intro={placesIntro}>
       <PlacesMap />
       <Playlist />
     </Section>

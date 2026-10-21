@@ -11,7 +11,7 @@ export function Contact() {
   ];
 
   return (
-    <Section id="contact" title={site.contact.heading}>
+    <Section id="contact" kanji="連絡" title={site.contact.heading}>
       <p className="mb-8 max-w-xl text-muted">{site.contact.text}</p>
       <ul className="max-w-xl divide-y divide-border rounded-lg border border-border bg-surface">
         {links.map((l) => (

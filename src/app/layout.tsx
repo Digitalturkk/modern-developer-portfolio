@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Shippori_Mincho } from "next/font/google";
 import { Ambient } from "@/components/Ambient";
 import { CommandPalette } from "@/components/CommandPalette";
 import { Footer } from "@/components/Footer";
@@ -9,6 +9,8 @@ import "../styles/globals.css";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+// Headings: a Mincho (Japanese serif) typeface; only its Latin glyphs are downloaded.
+const serif = Shippori_Mincho({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif", display: "swap", preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0b" },
+    { media: "(prefers-color-scheme: dark)", color: "#101218" },
     { media: "(prefers-color-scheme: light)", color: "#f4eee1" },
   ],
 };
@@ -43,7 +45,7 @@ const themeScript = `try{if(localStorage.getItem('theme')==='light')document.doc
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

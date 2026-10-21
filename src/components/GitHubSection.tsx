@@ -46,7 +46,7 @@ export async function GitHubSection() {
   const repos = await getRepos();
 
   return (
-    <Section id="github" title="GitHub" intro="Selected public repositories, with live star counts from GitHub.">
+    <Section id="github" kanji="開発" title="GitHub" intro="Selected public repositories, with live star counts from GitHub.">
       <ul className="grid gap-4 md:grid-cols-2">
         {repos.map((r) => (
           <li key={r.url}>

@@ -20,15 +20,15 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: 96,
-          background: "#0a0a0b",
-          color: "#ededee",
+          background: "#101218",
+          color: "#dcd6c8",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
         <img src={logoSrc} width={96} height={96} style={{ marginBottom: 40 }} />
-        <div style={{ fontSize: 28, color: "#8b9cff", marginBottom: 24 }}>faridhuseynov.dev</div>
+        <div style={{ fontSize: 28, color: "#8fa8d4", marginBottom: 24 }}>faridhuseynov.dev</div>
         <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -2 }}>Farid Huseynov</div>
-        <div style={{ fontSize: 34, color: "#8e8e98", marginTop: 16 }}>
+        <div style={{ fontSize: 34, color: "#9c978c", marginTop: 16 }}>
           Software Engineer. Java, Spring Boot, backend systems.
         </div>
       </div>

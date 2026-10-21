@@ -16,7 +16,17 @@ export function Footer() {
           <a href={`mailto:${site.email}`} className={link}>Email</a>
         </nav>
       </div>
-      <p className="container-page mt-8 text-xs text-muted">Built with ♥ from Azerbaijan</p>
+      <div className="container-page mt-8 flex items-end justify-between gap-6">
+        <p className="text-xs text-muted">Built with ♥ from Azerbaijan</p>
+        {/* Artist's seal, as on a Japanese woodblock print */}
+        <span
+          lang="ja"
+          aria-hidden="true"
+          className="select-none rounded-[3px] bg-shu px-1 py-1.5 font-mincho text-xs leading-tight text-bg [writing-mode:vertical-rl]"
+        >
+          ファリド
+        </span>
+      </div>
     </footer>
   );
 }

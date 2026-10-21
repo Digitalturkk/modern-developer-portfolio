@@ -11,7 +11,12 @@ export function Hero() {
     <section aria-labelledby="hero-heading" className="py-16 md:py-28">
       <div className="container-page grid items-center gap-12 md:grid-cols-[1.25fr_1fr]">
         <div>
-          <p className={`font-mono text-sm text-accent ${enter}`}>{site.hero.eyebrow}</p>
+          <p className={`font-mono text-sm text-accent ${enter}`}>
+            {site.hero.eyebrow}
+            <span lang="ja" aria-hidden="true" className="ml-3 font-mincho text-muted">
+              ソフトウェアエンジニア
+            </span>
+          </p>
           <h1
             id="hero-heading"
             className={`mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl ${enter}`}
@@ -38,7 +43,12 @@ export function Hero() {
             {site.hero.stackLine}
           </p>
         </div>
-        <div className={enter} style={delay(200)}>
+        <div className={`relative ${enter}`} style={delay(200)}>
+          {/* Red sun rising behind the terminal, as in ukiyo-e prints */}
+          <div
+            aria-hidden="true"
+            className="hero-sun pointer-events-none absolute -right-6 -top-20 -z-10 h-52 w-52 rounded-full md:-right-16 md:-top-24 md:h-72 md:w-72"
+          />
           <StatusPanel />
         </div>
       </div>

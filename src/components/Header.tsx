@@ -28,7 +28,7 @@ export function Header() {
         <Link href="/" className="group flex items-center gap-2.5 font-semibold tracking-tight" onClick={() => setOpen(false)}>
           <WaveMark className="h-7 w-7 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5" />
           {site.name}
-          <span lang="ja" aria-hidden="true" className="hidden text-xs font-normal tracking-normal text-muted sm:inline">
+          <span lang="ja" aria-hidden="true" className="hidden font-mincho text-xs font-normal tracking-normal text-muted sm:inline">
             ファリド
           </span>
         </Link>

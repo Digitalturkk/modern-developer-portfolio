@@ -13,10 +13,13 @@ const config: Config = {
         fg: token("fg"),
         muted: token("muted"),
         accent: token("accent"),
+        shu: token("shu"),
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        // System Japanese serif fonts, so no web font has to be downloaded for the kanji labels
+        mincho: ['"Hiragino Mincho ProN"', '"Yu Mincho"', "YuMincho", '"Noto Serif JP"', "serif"],
       },
       keyframes: {
         "fade-up": {

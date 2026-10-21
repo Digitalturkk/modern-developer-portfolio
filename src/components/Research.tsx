@@ -5,7 +5,7 @@ import { Section } from "./Section";
 
 export function Research() {
   return (
-    <Section id="research" title="Research & Experiments" intro="Self-directed investigations into how systems behave. No results are claimed until the work is finished.">
+    <Section id="research" kanji="研究" title="Research & Experiments" intro="Self-directed investigations into how systems behave. No results are claimed until the work is finished.">
       <div className="space-y-4">
         {research.map((r) => (
           <ResearchCard key={r.slug} item={r} />

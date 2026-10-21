@@ -3,7 +3,7 @@ import { Section } from "./Section";
 
 export function Education() {
   return (
-    <Section id="education" title="Education">
+    <Section id="education" kanji="学歴" title="Education">
       <ul className="space-y-4">
         {education.map((e) => (
           <li key={e.school} className="flex flex-col justify-between gap-2 rounded-lg border border-border bg-surface p-6 sm:flex-row">

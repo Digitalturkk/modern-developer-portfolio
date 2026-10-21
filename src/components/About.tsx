@@ -3,7 +3,7 @@ import { Section } from "./Section";
 
 export function About() {
   return (
-    <Section id="about" title="About">
+    <Section id="about" kanji="自己紹介" title="About">
       <div className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
         <div className="max-w-prose space-y-4 leading-relaxed">
           {about.paragraphs.map((p) => (
