@@ -184,10 +184,10 @@ export function StatusPanel() {
 
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-surface font-mono text-sm transition-colors duration-150 focus-within:border-accent/60">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-border bg-bg/60 px-3 py-2 text-xs text-muted">
-        <span />
-        <span>farid@portfolio: ~</span>
-        <span className="flex justify-end gap-3" aria-hidden="true">
+      <div className="flex items-center gap-3 border-b border-border bg-bg/60 px-3 py-2 text-xs text-muted sm:grid sm:grid-cols-[1fr_auto_1fr]">
+        <span className="hidden sm:block" />
+        <span className="min-w-0 flex-1 truncate">farid@portfolio: ~</span>
+        <span className="flex shrink-0 justify-end gap-2.5 sm:gap-3" aria-hidden="true">
           <Minus className="h-3 w-3" />
           <Square className="h-2.5 w-2.5" />
           <X className="h-3 w-3" />

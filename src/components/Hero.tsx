@@ -8,7 +8,7 @@ const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
 export function Hero() {
   return (
-    <section aria-labelledby="hero-heading" className="py-16 md:py-28">
+    <section aria-labelledby="hero-heading" className="overflow-x-clip py-16 md:py-28">
       <div className="container-page grid items-center gap-12 md:grid-cols-[1.25fr_1fr]">
         <div>
           <p className={`font-mono text-sm text-accent ${enter}`}>

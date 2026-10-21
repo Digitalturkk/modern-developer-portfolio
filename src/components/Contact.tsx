@@ -21,12 +21,13 @@ export function Contact() {
               {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="group flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-bg"
             >
-              <span className="flex items-center gap-3">
+              <span className="flex shrink-0 items-center gap-3">
                 <span className="text-muted">{l.icon}</span>
-                <span className="text-sm text-muted">{l.label}</span>
+                {/* The icon carries the meaning on narrow phones, leaving room for the full email address */}
+                <span className="sr-only text-sm text-muted sm:not-sr-only">{l.label}</span>
               </span>
-              <span className="flex items-center gap-2 text-sm">
-                {l.value}
+              <span className="flex min-w-0 items-center gap-2 text-sm">
+                <span className="min-w-0 break-all">{l.value}</span>
                 <ArrowUpRight className="h-4 w-4 text-muted transition-[color,transform] group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
               </span>
             </a>
