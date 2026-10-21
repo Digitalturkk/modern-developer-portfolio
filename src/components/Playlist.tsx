@@ -54,7 +54,7 @@ export async function Playlist() {
             <Equalizer />
             What I listen to while coding
           </p>
-          <h3 className="mt-1 text-lg font-semibold tracking-tight">{name}</h3>
+          <h4 className="mt-1 text-lg font-semibold tracking-tight">{name}</h4>
           <p className="font-mono text-xs text-muted">{meta.join(" · ")}</p>
         </div>
         <div className="hidden sm:block">{openLink}</div>

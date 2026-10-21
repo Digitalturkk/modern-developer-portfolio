@@ -1,5 +1,6 @@
 // Generates src/data/world-map.json (dot-matrix land + outlines of the highlighted countries),
-// framed around the countries listed in src/data/places.ts.
+// framed around the countries listed in src/data/places.ts, plus the positions of the cities in
+// src/data/cities.json (where the travel routes from home start and end).
 // Runs automatically before `npm run dev` and `npm run build`. Skips if the file is already generated
 // for the same countries. Force a rebuild with: npm run map
 import { readFileSync, writeFileSync } from "node:fs";
@@ -10,9 +11,11 @@ const OUT = fileURLToPath(new URL("../src/data/world-map.json", import.meta.url)
 const require = createRequire(import.meta.url);
 
 const PLACES = fileURLToPath(new URL("../src/data/places.ts", import.meta.url));
+const CITIES = fileURLToPath(new URL("../src/data/cities.json", import.meta.url));
 
 // `mapName` values in places.ts, as they appear in world-atlas (Natural Earth). Türkiye is "Turkey" there.
 const TARGETS = [...readFileSync(PLACES, "utf8").matchAll(/mapName: "([^"]+)"/g)].map((m) => m[1]);
+const TRAVEL = JSON.parse(readFileSync(CITIES, "utf8"));
 const WIDTH = 1000;
 const HEIGHT = 440;
 const PADDING = 48; // space around the highlighted countries, in map units
@@ -21,7 +24,11 @@ const STEP = 8; // dot spacing in map units
 function alreadyGenerated() {
   try {
     const map = JSON.parse(readFileSync(OUT, "utf8"));
-    return map.dots.length > 0 && JSON.stringify(map.targets) === JSON.stringify(TARGETS);
+    return (
+      map.dots.length > 0 &&
+      JSON.stringify(map.targets) === JSON.stringify(TARGETS) &&
+      JSON.stringify(map.travel) === JSON.stringify(TRAVEL)
+    );
   } catch {
     return false;
   }
@@ -75,7 +82,15 @@ async function main() {
     return { name: f.properties.name, d: path(f), cx: Math.round(cx * 10) / 10, cy: Math.round(cy * 10) / 10 };
   });
 
-  writeFileSync(OUT, JSON.stringify({ width: WIDTH, height, targets: TARGETS, dots, countries }));
+  const point = ([lon, lat]) => projection([lon, lat]).map((v) => Math.round(v * 10) / 10);
+  const [hx, hy] = point(TRAVEL.home.coords);
+  const home = { name: TRAVEL.home.name, x: hx, y: hy };
+  const cities = TRAVEL.cities.map((c) => {
+    const [x, y] = point(c.coords);
+    return { name: c.name, country: c.country, x, y };
+  });
+
+  writeFileSync(OUT, JSON.stringify({ width: WIDTH, height, targets: TARGETS, travel: TRAVEL, dots, countries, home, cities }));
   console.log(`[map] wrote world-map.json (${Math.round((dots.length + countries.reduce((n, c) => n + c.d.length, 0)) / 1024)} KB of path data)`);
 }
 

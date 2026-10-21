@@ -1,0 +1,20 @@
+{
+  "home": { "name": "Baku", "coords": [49.8671, 40.4093] },
+  "cities": [
+    { "name": "Tbilisi", "country": "georgia", "coords": [44.793, 41.7151] },
+    { "name": "Marneuli", "country": "georgia", "coords": [44.8086, 41.475] },
+    { "name": "Bolnisi", "country": "georgia", "coords": [44.54, 41.4475] },
+    { "name": "Tashkent", "country": "uzbekistan", "coords": [69.2401, 41.2995] },
+    { "name": "Samarkand", "country": "uzbekistan", "coords": [66.9597, 39.6542] },
+    { "name": "Istanbul", "country": "turkiye", "coords": [28.9784, 41.0082] },
+    { "name": "Ankara", "country": "turkiye", "coords": [32.8597, 39.9334] },
+    { "name": "Amasya", "country": "turkiye", "coords": [35.8353, 40.6499] },
+    { "name": "Cappadocia", "country": "turkiye", "coords": [34.8289, 38.6431] },
+    { "name": "Adana", "country": "turkiye", "coords": [35.3213, 37.0] },
+    { "name": "Mersin", "country": "turkiye", "coords": [34.6415, 36.8121] },
+    { "name": "Antalya", "country": "turkiye", "coords": [30.7133, 36.8969] },
+    { "name": "Tokyo", "country": "japan", "coords": [139.6917, 35.6895] },
+    { "name": "Fujikawaguchiko", "country": "japan", "coords": [138.7553, 35.497] },
+    { "name": "Doha", "country": "qatar", "coords": [51.531, 25.2854] }
+  ]
+}

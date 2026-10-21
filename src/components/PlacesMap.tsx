@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { places, type Place } from "@/data/places";
 import world from "@/data/world-map.json";
 
@@ -10,20 +10,87 @@ interface MapCountry {
   cx: number;
   cy: number;
 }
+interface MapPoint {
+  name: string;
+  x: number;
+  y: number;
+}
+interface MapCity extends MapPoint {
+  country: string;
+}
 interface WorldMap {
   width: number;
   height: number;
   dots: string;
   countries: MapCountry[];
+  home: MapPoint;
+  cities: MapCity[];
 }
 
 const map = world as WorldMap;
+const home = places.find((p) => p.status === "home");
 const visited = places.filter((p) => p.status === "visited");
 const goals = places.filter((p) => p.status === "goal");
 
-const label = (p: Place) => (p.status === "visited" ? "Visited" : "Goal destination");
+const LABELS = { home: "Home", visited: "Visited", goal: "Goal destination" } as const;
+const label = (p: Place) => LABELS[p.status];
+
+const citiesOf = (id: string) => map.cities.filter((c) => c.country === id).map((c) => c.name);
+
+/** Curved route from home to a city: a quadratic Bézier bowed upwards, flatter for short hops. */
+function routePath(a: MapPoint, b: MapPoint) {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const length = Math.hypot(dx, dy);
+  let nx = -dy / length;
+  let ny = dx / length;
+  if (ny > 0) {
+    nx = -nx;
+    ny = -ny;
+  }
+  const bow = Math.min(length * 0.3, 140);
+  const cx = (a.x + b.x) / 2 + nx * bow;
+  const cy = (a.y + b.y) / 2 + ny * bow;
+  return `M${a.x} ${a.y}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${b.x} ${b.y}`;
+}
+
+// Draw order: nearest routes first, so the animation spreads outwards from home.
+const routes = map.cities
+  .map((city) => ({ city, place: places.find((p) => p.id === city.country), d: routePath(map.home, city) }))
+  .sort((a, b) => Math.hypot(a.city.x - map.home.x, a.city.y - map.home.y) - Math.hypot(b.city.x - map.home.x, b.city.y - map.home.y));
+
+const ROUTE_MS = 1100;
+const STAGGER_MS = 90;
+
+/**
+ * "static": routes fully drawn (no JavaScript yet, or reduced motion).
+ * "waiting": hidden until the map scrolls into view. "drawn": animating in.
+ */
+type DrawState = "static" | "waiting" | "drawn";
+
+function useDrawOnView(ref: React.RefObject<Element | null>) {
+  const [state, setState] = useState<DrawState>("static");
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setState("waiting");
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setState("drawn");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref]);
+  return state;
+}
 
 function shapeClass(p: Place, active: boolean) {
+  if (p.status === "home") return `stroke-shu transition-[fill] duration-150 ${active ? "fill-shu/60" : "fill-shu/30"}`;
   if (p.status === "visited") return `stroke-accent transition-[fill] duration-150 ${active ? "fill-accent/70" : "fill-accent/35"}`;
   return `stroke-accent transition-[fill] duration-150 ${active ? "fill-accent/30" : "fill-accent/10"}`;
 }
@@ -39,6 +106,26 @@ export function PlacesMap() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const activeId = hovered ?? selected;
+  const svgRef = useRef<SVGSVGElement>(null);
+  const draw = useDrawOnView(svgRef);
+  const maskId = useId();
+
+  /** Stroke-dash styles that draw a path (pathLength 1) from home to its end. */
+  const drawStyle = (i: number): React.CSSProperties =>
+    draw === "static"
+      ? {}
+      : {
+          strokeDasharray: 1,
+          strokeDashoffset: draw === "waiting" ? 1 : 0,
+          transition: draw === "drawn" ? `stroke-dashoffset ${ROUTE_MS}ms cubic-bezier(0.65, 0, 0.35, 1) ${i * STAGGER_MS}ms` : undefined,
+        };
+  const popStyle = (i: number): React.CSSProperties =>
+    draw === "static"
+      ? {}
+      : {
+          opacity: draw === "waiting" ? 0 : 1,
+          transition: draw === "drawn" ? `opacity 300ms ease-out ${i * STAGGER_MS + ROUTE_MS - 150}ms` : undefined,
+        };
 
   const shapes = places.map((place) => ({ place, shape: map.countries.find((c) => c.name === place.mapName) }));
   const active = shapes.find((s) => s.place.id === activeId);
@@ -50,12 +137,14 @@ export function PlacesMap() {
 
   return (
     <div className="grid gap-6 md:grid-cols-[1.7fr_1fr]">
-      <div className="rounded-lg border border-border bg-surface p-4">
+      {/* Centred vertically, since the city lists can make the side panel taller than the map */}
+      <div className="flex flex-col justify-center rounded-lg border border-border bg-surface p-4">
         <div className="relative">
           <svg
+            ref={svgRef}
             viewBox={`0 0 ${map.width} ${map.height}`}
             role="img"
-            aria-label={`Map of the countries I have visited and want to visit. Visited: ${visited.map((p) => p.name).join(", ")}. Goal destinations: ${goals.map((p) => p.name).join(" and ")}.`}
+            aria-label={`Map of trips from ${map.home.name}${home ? `, ${home.name}` : ""}. Visited: ${visited.map((p) => p.name).join(", ")}. Goal destinations: ${goals.map((p) => p.name).join(" and ")}.`}
             className="block h-auto w-full"
             onClick={() => setSelected(null)}
           >
@@ -102,6 +191,53 @@ export function PlacesMap() {
                 </g>
               ) : null,
             )}
+
+            {/* Routes from home. Goal routes are dashed, so they are revealed through a mask that draws in. */}
+            <g fill="none" strokeLinecap="round" pointerEvents="none">
+              {routes.map(({ city, place, d }, i) => {
+                // Hovering a country highlights its routes; hovering home keeps them all, since every route starts there.
+                const dim = activeId !== null && activeId !== city.country && activeId !== home?.id;
+                const goal = place?.status === "goal";
+                return (
+                  <g key={city.name} className="transition-opacity duration-200" opacity={dim ? 0.15 : 1}>
+                    {goal ? (
+                      <>
+                        <mask id={`${maskId}-${i}`} maskUnits="userSpaceOnUse" x={0} y={0} width={map.width} height={map.height}>
+                          <path d={d} stroke="white" strokeWidth={4} pathLength={1} style={drawStyle(i)} />
+                        </mask>
+                        <path d={d} strokeWidth={1.2} strokeDasharray="4 3" mask={`url(#${maskId}-${i})`} className="stroke-accent" />
+                      </>
+                    ) : (
+                      <path d={d} strokeWidth={1.3} pathLength={1} style={drawStyle(i)} className="stroke-accent" />
+                    )}
+                    <circle
+                      cx={city.x}
+                      cy={city.y}
+                      r={2.4}
+                      strokeWidth={1.2}
+                      style={popStyle(i)}
+                      className={goal ? "fill-surface stroke-accent" : "fill-accent stroke-surface"}
+                    >
+                      <title>{city.name}</title>
+                    </circle>
+                  </g>
+                );
+              })}
+            </g>
+
+            {/* Home: Baku, in vermilion, with a soft pulse */}
+            <g pointerEvents="none">
+              <circle
+                cx={map.home.x}
+                cy={map.home.y}
+                r={3.5}
+                className="fill-shu/40 motion-safe:animate-ping"
+                style={{ transformBox: "fill-box", transformOrigin: "center", animationDuration: "2.4s" }}
+              />
+              <circle cx={map.home.x} cy={map.home.y} r={3.5} strokeWidth={1.2} className="fill-shu stroke-surface">
+                <title>{`${map.home.name} (home)`}</title>
+              </circle>
+            </g>
           </svg>
 
           {active?.shape ? (
@@ -116,6 +252,10 @@ export function PlacesMap() {
 
         <ul aria-label="Map legend" className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs text-muted">
           <li className="flex items-center gap-2">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-shu" />
+            Home ({map.home.name}{home ? `, ${home.name}` : ""})
+          </li>
+          <li className="flex items-center gap-2">
             <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
             Visited
           </li>
@@ -127,8 +267,23 @@ export function PlacesMap() {
       </div>
 
       <div className="flex flex-col gap-6 rounded-lg border border-border bg-surface p-5">
+        {home ? (
+          <div className="border-b border-border pb-5">
+            <h4 className="text-sm font-medium">Home</h4>
+            <p
+              {...hoverProps(home.id)}
+              className={`mt-3 flex items-start gap-3 rounded px-2 py-1 text-sm transition-colors ${activeId === home.id ? "bg-bg" : ""}`}
+            >
+              <span aria-hidden="true">{home.flag}</span>
+              <span>
+                {home.name}
+                <span className="block font-mono text-xs text-muted">{map.home.name}</span>
+              </span>
+            </p>
+          </div>
+        ) : null}
         <div>
-          <h3 className="text-sm font-medium">{"Places I've been"}</h3>
+          <h4 className="text-sm font-medium">{"Places I've been"}</h4>
           <p className="mt-1 font-mono text-xs text-muted">
             {visited.length} {visited.length === 1 ? "country" : "countries"}
           </p>
@@ -137,10 +292,15 @@ export function PlacesMap() {
               <li
                 key={p.id}
                 {...hoverProps(p.id)}
-                className={`flex items-center gap-3 rounded px-2 py-1 transition-colors ${activeId === p.id ? "bg-bg" : ""}`}
+                className={`flex items-start gap-3 rounded px-2 py-1 transition-colors ${activeId === p.id ? "bg-bg" : ""}`}
               >
                 <span aria-hidden="true">{p.flag}</span>
-                {p.name}
+                <span>
+                  {p.name}
+                  {citiesOf(p.id).length > 0 ? (
+                    <span className="block font-mono text-xs text-muted">{citiesOf(p.id).join(" · ")}</span>
+                  ) : null}
+                </span>
               </li>
             ))}
           </ul>
@@ -148,15 +308,20 @@ export function PlacesMap() {
 
         {goals.length > 0 ? (
           <div className="border-t border-border pt-5">
-            <h3 className="text-sm font-medium">Next destinations</h3>
+            <h4 className="text-sm font-medium">Next destinations</h4>
             <ul className="mt-3 space-y-1">
               {goals.map((goal) => (
                 <li
                   key={goal.id}
                   {...hoverProps(goal.id)}
-                  className={`flex items-center gap-3 rounded px-2 py-1 text-sm transition-colors ${activeId === goal.id ? "bg-bg" : ""}`}
+                  className={`flex items-start gap-3 rounded px-2 py-1 text-sm transition-colors ${activeId === goal.id ? "bg-bg" : ""}`}
                 >
-                  {goal.name} <span aria-hidden="true">{goal.flag}</span>
+                  <span>
+                    {goal.name} <span aria-hidden="true">{goal.flag}</span>
+                    {citiesOf(goal.id).length > 0 ? (
+                      <span className="block font-mono text-xs text-muted">{citiesOf(goal.id).join(" · ")}</span>
+                    ) : null}
+                  </span>
                 </li>
               ))}
             </ul>

@@ -1,7 +1,9 @@
 import { about } from "@/data/about";
 import { activities } from "@/data/activities";
 import { education } from "@/data/education";
+import travel from "@/data/cities.json";
 import { experience } from "@/data/experience";
+import { inspirations } from "@/data/inspirations";
 import { places } from "@/data/places";
 import { projects } from "@/data/projects";
 import { research } from "@/data/research";
@@ -33,7 +35,10 @@ ${about.paragraphs.join("\n\n")}
 - Email: ${site.email}
 - Languages: ${about.languages.map((l) => `${l.name} (${l.level})`).join(", ")}
 - Interests: ${about.interests.join(", ")}
+- Home city: ${travel.home.name}
 - Countries visited: ${visited.join(", ")}
+- Cities visited: ${travel.cities.filter((c) => places.find((p) => p.id === c.country)?.status === "visited").map((c) => c.name).join(", ")}
+- Next destinations: ${travel.cities.filter((c) => places.find((p) => p.id === c.country)?.status === "goal").map((c) => c.name).join(", ")}
 
 ## Experience
 
@@ -54,6 +59,10 @@ ${list(research.map((r) => `[${r.title}](${site.url}/research/${r.slug}) (${r.st
 ## Skills
 
 ${list(skillGroups.map((g) => `${g.title}: ${g.items.join(", ")}`))}
+
+## People who inspire him
+
+${list(inspirations.map((p) => `${p.name} (${p.years}), ${p.role}: ${p.about}`))}
 
 ## Activities and achievements
 

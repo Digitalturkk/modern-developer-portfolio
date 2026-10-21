@@ -19,7 +19,7 @@ export const experience: ExperienceItem[] = [
     org: "Brain Solutions",
     period: "Oct 2026 – Present",
     summary: "Just started :)",
-    points: ["Internship"],
+    points: ["Part-Time"],
     },
     /*{
     role: "Software Engineer Intern (Remote)",
