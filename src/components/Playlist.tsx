@@ -26,7 +26,7 @@ export async function Playlist() {
   const { name: fallbackName, id } = site.spotifyPlaylist;
   const url = `https://open.spotify.com/playlist/${id}`;
   const playlist = await getPlaylist(id);
-  const name = playlist?.name ?? fallbackName;
+  const name = playlist.name || fallbackName;
   const meta = ["Playlist", playlist?.owner, playlist?.trackCount ? `${playlist.trackCount} tracks` : null].filter(Boolean);
 
   const openLink = (

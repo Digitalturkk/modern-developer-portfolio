@@ -3,7 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DetailBlock } from "@/components/DetailBlock";
+import { JsonLd } from "@/components/JsonLd";
 import { getProject, projects } from "@/data/projects";
+import { site } from "@/data/site";
+import { projectData } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return {};
   return {
     title: project.title,
-    description: project.description,
+    description: `${project.title} by ${site.name}: ${project.description}`,
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: { title: project.title, description: project.description, url: `/projects/${project.slug}` },
   };
@@ -30,6 +33,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <article className="container-page max-w-3xl py-12 md:py-20">
+      <JsonLd data={projectData(project)} />
       <Link href="/#projects" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         All projects

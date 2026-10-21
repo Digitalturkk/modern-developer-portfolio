@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DetailBlock } from "@/components/DetailBlock";
+import { JsonLd } from "@/components/JsonLd";
 import { getResearch, research } from "@/data/research";
+import { researchData } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,6 +32,7 @@ export default async function ResearchPage({ params }: Props) {
 
   return (
     <article className="container-page max-w-3xl py-12 md:py-20">
+      <JsonLd data={researchData(item)} />
       <Link href="/research" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         All research

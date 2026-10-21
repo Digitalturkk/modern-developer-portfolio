@@ -5,18 +5,21 @@ import { Education } from "@/components/Education";
 import { Experience } from "@/components/Experience";
 import { GitHubSection } from "@/components/GitHubSection";
 import { Hero } from "@/components/Hero";
+import { JsonLd } from "@/components/JsonLd";
 import { Places } from "@/components/Places";
 import { Projects } from "@/components/Projects";
 import { TechMarquee } from "@/components/TechMarquee";
 import { Research } from "@/components/Research";
 import { Skills } from "@/components/Skills";
 import { projects } from "@/data/projects";
+import { profileGraph } from "@/lib/structured-data";
 
 export const revalidate = 3600;
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={profileGraph} />
       <Hero />
       <TechMarquee />
       <About />

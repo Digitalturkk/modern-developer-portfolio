@@ -6,7 +6,7 @@ import { research } from "@/data/research";
 
 export const metadata: Metadata = {
   title: "Research & Experiments",
-  description: "Self-directed research and experiments by Farid Huseynov on databases and backend performance.",
+  description: "Research by Farid Huseynov, including a study of microservice architecture in government information systems.",
   alternates: { canonical: "/research" },
 };
 

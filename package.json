@@ -9,8 +9,9 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "predev": "node scripts/generate-world-map.mjs",
-    "prebuild": "node scripts/generate-world-map.mjs",
-    "map": "node scripts/generate-world-map.mjs --force"
+    "prebuild": "node scripts/generate-world-map.mjs && node scripts/snapshot-playlist.mjs",
+    "map": "node scripts/generate-world-map.mjs --force",
+    "playlist": "node scripts/snapshot-playlist.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
