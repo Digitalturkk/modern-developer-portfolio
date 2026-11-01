@@ -46,7 +46,7 @@ function execute(raw: string): Line[] | null {
       return [
         { text: `${site.name}, ${site.role}.`, strong: true },
         { text: about.paragraphs[0] },
-        { text: "Focus: Backend Engineering. Primary language: Java / C#." },
+        { text: "Focus: backend engineering. Main languages: Java and C#." },
       ];
     case "projects":
       return projects.map((p) => ({ text: `${p.title}: ${p.tagline}`, href: `/projects/${p.slug}` }));

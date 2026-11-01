@@ -10,7 +10,7 @@ export function Projects({ projects }: { projects: Project[] }) {
   const visible = active === "All" ? projects : projects.filter((p) => p.categories.includes(active));
 
   return (
-    <Section id="projects" kanji="作品" title="Projects" intro="Selected projects across backend, full-stack, frontend, open-source, and fintech work.">
+    <Section id="projects" kanji="作品" title="Projects" intro="Things I have built. Each card links to the code and, where one exists, a live demo.">
       <div role="group" aria-label="Filter projects" className="mb-8 flex flex-wrap gap-2">
         {filters.map((f) => (
           <button

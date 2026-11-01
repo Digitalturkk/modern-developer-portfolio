@@ -29,7 +29,7 @@ export function Hero() {
           </p>
           <div className={`mt-8 flex flex-wrap gap-3 ${enter}`} style={delay(180)}>
             <Link href="/#projects" className="btn-primary">
-              View Projects
+              View projects
             </Link>
             <a href={site.cv} download className="btn-secondary group">
               <Download

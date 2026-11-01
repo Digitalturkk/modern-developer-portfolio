@@ -35,7 +35,7 @@ export function ResearchCard({ item }: { item: ResearchItem }) {
       </ul>
 
       <Link href={`/research/${item.slug}`} className="btn-secondary group mt-8">
-        View Research
+        View research
         <ArrowRight className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
       </Link>
     </article>

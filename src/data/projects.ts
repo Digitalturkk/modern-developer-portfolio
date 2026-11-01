@@ -6,13 +6,13 @@ export const projects: Project[] = [
     title: "DuckVest",
     tagline: "Java / Spring Boot brokerage simulation platform",
     description:
-      "A brokerage simulation platform built around market data, authentication, and portfolio functionality.",
+      "A brokerage simulator with sign-in, portfolios and market data from the Twelve Data API.",
     categories: ["Backend", "Full Stack", "Fintech"],
     tech: ["Java", "Spring Boot", "Spring Security", "JWT", "PostgreSQL", "Twelve Data API", "React"],
     github: "https://github.com/digisamu/DuckVest",
     overview: {
       items: [
-        "A brokerage simulation platform built around market data, authentication, and portfolio functionality.",
+        "A brokerage simulator with sign-in, portfolios and market data from the Twelve Data API.",
       ],
     },
     architecture: {
@@ -33,13 +33,13 @@ export const projects: Project[] = [
     title: "Getman",
     tagline: "Open-source offline-first API client",
     description:
-      "An offline-first API client designed as a lightweight alternative to traditional API development tools.",
+      "An offline API client, a smaller alternative to Postman that keeps your requests on your own machine.",
     categories: ["Open Source"],
     tech: ["Tauri", "Rust", "JavaScript/TypeScript", "API tooling", "Local storage"],
     github: "https://github.com/digisamu/Getman-Postman-Clone",
     overview: {
       items: [
-        "An offline-first API client designed as a lightweight alternative to traditional API development tools.",
+        "An offline API client, a smaller alternative to Postman that keeps your requests on your own machine.",
       ],
     },
     architecture: {
@@ -56,15 +56,15 @@ export const projects: Project[] = [
   {
     slug: "barsdag",
     title: "BARSDAG",
-    tagline: "Stock exchange simulation platform",
+    tagline: "A bar where drinks are priced like stocks",
     description:
-      "A backend-focused stock exchange simulation exploring financial workflows and trading-system concepts.",
+      "A Spring Boot REST API for a bar where drink prices rise and fall with demand, like shares on a stock exchange.",
     categories: ["Backend", "Fintech"],
     tech: ["Java", "Spring Boot", "PostgreSQL"],
     github: "https://github.com/digisamu/BARSDAG-Bar-Stock-Exchange",
     overview: {
       items: [
-        "A backend-focused stock exchange simulation exploring financial workflows and trading-system concepts.",
+        "A Spring Boot REST API for a bar where drink prices rise and fall with demand, like shares on a stock exchange.",
       ],
     },
     architecture: {
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     },
     decisions: {
       items: [
-        "The dice decide the name: the generator picks one component per die first, then builds the six faces around it, so the result never depends on physics.",
+        "The dice decide the name. The generator picks one component per die first and builds the six faces around it, so physics never changes the result.",
         "Dice motion is a set of pure functions of time (anticipation, flight with three bounces, staggered settle), so skipping ahead and reduced motion land on exactly the same faces.",
         "After settling, the scene reads each die's top face back from its real orientation, and unit tests check every face on all three animation paths.",
         "All cookie logic lives in one consent module, and analytics stay off unless a provider is configured.",
@@ -143,11 +143,11 @@ export const projects: Project[] = [
     slug: "qisajobs",
     title: "QisaJobs",
     tagline: "Freelance marketplace project",
-    description: "A marketplace concept designed around the Azerbaijani freelance ecosystem.",
+    description: "A freelance marketplace concept for Azerbaijan.",
     categories: [],
     tech: [],
     overview: {
-      items: ["A marketplace concept designed around the Azerbaijani freelance ecosystem."],
+      items: ["A freelance marketplace concept for Azerbaijan."],
     },
     architecture: { placeholder: "TODO: stack and architecture of QisaJobs." },
     decisions: { placeholder: "TODO: key technical decisions." },

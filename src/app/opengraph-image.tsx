@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Farid Huseynov — Software Engineer";
+export const alt = "Farid Huseynov, software engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,7 +29,7 @@ export default async function Image() {
         <div style={{ fontSize: 28, color: "#8fa8d4", marginBottom: 24 }}>faridhuseynov.dev</div>
         <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -2 }}>Farid Huseynov</div>
         <div style={{ fontSize: 34, color: "#9c978c", marginTop: 16 }}>
-          Software Engineer. Java, Spring Boot, backend systems.
+          Software engineer. Backend systems in Java and C#.
         </div>
       </div>
     ),

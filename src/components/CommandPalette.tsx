@@ -21,7 +21,7 @@ export function CommandPalette() {
 
   const actions = useMemo<Action[]>(
     () => [
-      { id: "home", label: "Go Home", hint: "Navigate", run: () => router.push("/") },
+      { id: "home", label: "Go home", hint: "Navigate", run: () => router.push("/") },
       { id: "about", label: "About", hint: "Navigate", run: () => router.push("/#about") },
       { id: "projects", label: "Projects", hint: "Navigate", run: () => router.push("/#projects") },
       { id: "research", label: "Research", hint: "Navigate", run: () => router.push("/#research") },
@@ -38,7 +38,7 @@ export function CommandPalette() {
           });
         },
       },
-      { id: "theme", label: "Toggle Theme", hint: "Action", run: toggleTheme },
+      { id: "theme", label: "Toggle theme", hint: "Action", run: toggleTheme },
     ],
     [router],
   );

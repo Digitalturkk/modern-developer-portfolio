@@ -1,7 +1,7 @@
 export const about = {
   paragraphs: [
-    "I'm a 4th-year Information Technologies student at Azerbaijan State University of Economics (UNEC), focused on backend and software engineering.",
-    "I like understanding how systems behave under real constraints: how data is modelled and queried, where performance goes, and how access is secured.",
+    "I'm a fourth-year Information Technologies student at Azerbaijan State University of Economics (UNEC), and I work on backend systems.",
+    "Most of my work is on the data side of a backend. At Aeronexus I traced a feature that ran more than 100 database queries per request back to an N+1 query pattern.",
   ],
   interests: [
     "Backend architecture",
@@ -13,10 +13,10 @@ export const about = {
     "Developer tools",
   ],
   currently: [
-    { label: "Studying", value: "Information Technologies @ UNEC" },
-    { label: "Focus", value: "Backend Engineering" },
+    { label: "Studying", value: "Information Technologies at UNEC" },
+    { label: "Focus", value: "Backend engineering" },
     { label: "Primary language", value: "Java / C#" },
-    { label: "Learning", value: "System Design · JVM · Distributed Systems" },
+    { label: "Learning", value: "System design · JVM · distributed systems" },
   ],
   languages: [
     { name: "English", level: "C1" },

@@ -3,7 +3,7 @@ import { Section } from "./Section";
 
 export function Experience() {
   return (
-    <Section id="experience" kanji="経歴" title="Selected Experience">
+    <Section id="experience" kanji="経歴" title="Experience">
       {experience.length === 0 ? (
         <p className="max-w-xl text-muted">
           No professional roles to list yet. My project work is the best picture of what I build, so start with the projects above.

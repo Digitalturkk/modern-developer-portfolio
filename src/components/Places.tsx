@@ -9,7 +9,7 @@ export function Places() {
     <Section
       id="places"
       kanji="趣味"
-      title="Beyond Code"
+      title="Beyond code"
       intro="Get to know me better: the places I've traveled, the music I code to, and the people who inspire me."
     >
       <h3 className="text-lg font-semibold">Travels</h3>

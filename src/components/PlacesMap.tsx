@@ -32,7 +32,7 @@ const home = places.find((p) => p.status === "home");
 const visited = places.filter((p) => p.status === "visited");
 const goals = places.filter((p) => p.status === "goal");
 
-const LABELS = { home: "Home", visited: "Visited", goal: "Goal destination" } as const;
+const LABELS = { home: "Home", visited: "Visited", goal: "Next destination" } as const;
 const label = (p: Place) => LABELS[p.status];
 
 const citiesOf = (id: string) => map.cities.filter((c) => c.country === id).map((c) => c.name);
@@ -144,7 +144,7 @@ export function PlacesMap() {
             ref={svgRef}
             viewBox={`0 0 ${map.width} ${map.height}`}
             role="img"
-            aria-label={`Map of trips from ${map.home.name}${home ? `, ${home.name}` : ""}. Visited: ${visited.map((p) => p.name).join(", ")}. Goal destinations: ${goals.map((p) => p.name).join(" and ")}.`}
+            aria-label={`Map of trips from ${map.home.name}${home ? `, ${home.name}` : ""}. Visited: ${visited.map((p) => p.name).join(", ")}. Next destinations: ${goals.map((p) => p.name).join(" and ")}.`}
             className="block h-auto w-full"
             onClick={() => setSelected(null)}
           >
@@ -261,7 +261,7 @@ export function PlacesMap() {
           </li>
           <li className="flex items-center gap-2">
             <span aria-hidden="true" className="h-2 w-2 rotate-45 border border-accent" />
-            Future destination
+            Next destination
           </li>
         </ul>
       </div>

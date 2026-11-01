@@ -5,7 +5,7 @@ export function Inspirations() {
   return (
     <>
       <h3 className="mt-12 text-lg font-semibold">People who inspire me</h3>
-      <p className="mb-5 mt-1 text-sm text-muted">Leaders and thinkers whose work shaped the way I think about building things.</p>
+      <p className="mb-5 mt-1 text-sm text-muted">Two founders of modern states, and the scientist who invented fuzzy logic.</p>
       <ul className="grid gap-4 md:grid-cols-3">
         {inspirations.map((p) => (
           <li key={p.name} className="flex flex-col rounded-lg border border-border bg-surface p-6">

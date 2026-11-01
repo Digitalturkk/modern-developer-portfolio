@@ -14,7 +14,7 @@ const serif = Shippori_Mincho({ subsets: ["latin"], weight: ["500", "600", "700"
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: site.title, template: `%s — ${site.name}` },
+  title: { default: site.title, template: `%s by ${site.name}` },
   description: site.description,
   // The plain-text summary for AI assistants is linked from every page.
   alternates: { canonical: site.url, types: { "text/plain": "/llms.txt" } },
